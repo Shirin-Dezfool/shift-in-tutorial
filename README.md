@@ -6,7 +6,6 @@ state: it runs, but it has **no tests, no CI, and no AI tooling yet**. That is t
 ## Run it
 
 ```bash
-cd app
 pip install -e .
 uvicorn snip.main:app --reload --app-dir src
 ```
