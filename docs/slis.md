@@ -18,6 +18,6 @@ Targets are deliberately modest so a workshop pipeline can check them.
 - **M4** weights system test coverage toward the redirect hot path (SLIs 1–3).
 - **M5** treats SLI impact as part of the feature's acceptance criteria.
 
-> Note: in `start`, several of these SLIs are **not yet met** — e.g. unsafe URLs are accepted
-> (SLI 4) and unknown codes raise errors instead of correct 404s (SLI 2). Closing those gaps is
-> the work of the workshop.
+> Note: `start` doesn't meet every SLI here yet. Which ones, and why, is exactly what M2's review
+> is for — treat this table as the target, not a description of the current code, and don't go
+> looking for the specific gaps yourself before then.
