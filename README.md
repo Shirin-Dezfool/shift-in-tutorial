@@ -8,16 +8,21 @@ state: it runs, but it has **no tests, no CI, and no AI tooling yet**. That is t
 Do this a few days out, not on the morning of:
 
 1. Install and authenticate Claude Code with your own Claude subscription; clone this repo.
-2. Connect GitHub MCP under your own GitHub account — this is a one-time setup, not something
-   you'll do live on the day:
+2. Install the [GitHub CLI](https://cli.github.com/) if you don't have it, and authenticate under
+   your own GitHub account — this is the one-time setup, not something you do live on the day:
    ```bash
-   claude mcp add --transport http github https://api.githubcopilot.com/mcp/
+   gh auth login
    ```
-   The first time Claude Code actually needs a GitHub tool, it'll prompt you to authenticate
-   (`/mcp` inside a session, or it'll ask automatically) — one browser click to authorize, done.
-   Confirm it worked with `claude mcp list`: `github` should show as connected.
+   Confirm it worked with `gh auth status` — it should show you logged in and active. That's the
+   whole setup; Claude Code can run `gh` like any other terminal command, no separate connection
+   step needed.
 3. Run one smoke prompt — e.g. ask Claude Code to read this file and summarize it — to confirm
    everything's wired up before the room fills.
+
+*(GitHub MCP is an alternative way to give Claude Code GitHub actions, and it's worth knowing
+about as its own agent-feature category — but its official remote server currently can't complete
+OAuth setup (a live upstream bug, not something wrong with your setup), so it isn't the path this
+workshop depends on. See `docs/github-cli-notes.md` from M2 onward if you want to try it anyway.)*
 
 ## Run it
 
