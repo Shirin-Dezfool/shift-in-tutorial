@@ -8,6 +8,7 @@ state: it runs, but it has **no tests, no CI, and no AI tooling yet**. That is t
 Do this a few days out, not on the morning of:
 
 1. Install and authenticate Claude Code with your own Claude subscription; clone this repo.
+   Confirm `python3 --version` shows 3.11+ — that's all the pre-check for "Run it" below needs.
 2. Install the [GitHub CLI](https://cli.github.com/) if you don't have it, and authenticate under
    your own GitHub account — this is the one-time setup, not something you do live on the day:
    ```bash
@@ -27,9 +28,14 @@ workshop depends on. See `docs/github-cli-notes.md` from M2 onward if you want t
 ## Run it
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -e .
 uvicorn snip.main:app --reload --app-dir src
 ```
+
+`pip`/`uvicorn` as bare commands only exist once a virtualenv is active — if you see "command not
+found" for either, that's what's missing, not a broken install.
 
 - Interactive docs: http://127.0.0.1:8000/docs
 - OpenAPI schema: http://127.0.0.1:8000/openapi.json
