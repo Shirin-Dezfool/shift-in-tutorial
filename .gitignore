@@ -6,7 +6,6 @@ venv/
 .pytest_cache/
 .coverage
 htmlcov/
-.mutmut-cache
 dist/
 build/
 .DS_Store

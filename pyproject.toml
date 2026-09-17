@@ -8,7 +8,7 @@ dependencies = [
     "uvicorn>=0.29",
 ]
 
-# Test tooling (pytest, pytest-cov, robotframework, mutmut) is intentionally
+# Test tooling (pytest, pytest-cov, robotframework) is intentionally
 # NOT listed here. Adding it is part of the workshop (M3a onward).
 
 [build-system]
