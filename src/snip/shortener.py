@@ -1,9 +1,4 @@
-"""Core shortening logic.
-
-NOTE FOR FACILITATORS: this module deliberately contains a few realistic weaknesses
-that teams discover during M2 (AI code review). They are documented in
-solutions/README.md. Do not "fix" them in the `start` branch.
-"""
+"""Core shortening logic."""
 
 import random
 import string
