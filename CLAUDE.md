@@ -51,6 +51,7 @@ SLI must say which one, and the pipeline gates must reflect it.
 - SLIs 3, 4 and 5 target 100%: never relax an exact-URL, rejection or click-count assertion to
   make a change pass (e.g. loosening the `Location` check, or letting a `javascript:` URL through).
   Surface the conflict instead.
+- A turn never ends with a failing test: if a test is red, fix it or say clearly that you could not.
 - Roadmap item: link expiry (links that stop working after an owner-chosen time). Its SLI impact
   belongs in the acceptance criteria.
 
@@ -60,6 +61,7 @@ SLI must say which one, and the pipeline gates must reflect it.
   with hatchling); `main.py` is the app, `models.py` the request/response models, `shortener.py`
   code generation, `store.py` storage.
 - Run: create a venv, `pip install -e .`, then `uvicorn snip.main:app --reload --app-dir src`.
+- Test: `pip install -e ".[test]"`, then `pytest tests/unit tests/api` (add `--cov=snip` for coverage).
 - Runtime dependencies are only `fastapi` and `uvicorn`; keep it that way unless the hot path
   needs more. Test tooling (pytest, pytest-cov, robotframework) is declared separately.
 - Endpoints: `POST /api/links`, `GET /api/links`, `GET /api/links/{code}/stats`, `GET /{code}`.
