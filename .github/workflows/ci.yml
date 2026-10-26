@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [start]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # Step 1 - production-only install + import check.
+      # Worth its own step because every later step installs the [test] extras, and the test
+      # tooling (pytest, httpx2, ...) would mask a missing runtime dependency: if src/snip/ ever
+      # imports something that is only declared under [project.optional-dependencies], the tests
+      # still pass here but the deployed service crashes on start-up. Installing with production
+      # dependencies only (fastapi, uvicorn) and importing the app catches that before anything else.
+      - name: "1. Install production dependencies only and check the app imports"
+        run: |
+          pip install .
+          python -c "import snip.main; print('snip.main imported OK')"
+
+      - name: "2. Unit and API tests"
+        run: |
+          pip install -e ".[test]"
+          pytest tests/unit tests/api -q
+
+      - name: "3. SLI gate - redirect latency (SLI 1, p95 < 50 ms)"
+        run: pytest tests/gates -q
